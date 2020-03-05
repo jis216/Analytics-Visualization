@@ -1,0 +1,133 @@
+<!--the only invalid warnings are about input type color and date that are not supported across all platforms-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Jiayue Sun">
+        <title>Form Display</title>
+        <link rel="icon" href="moon_icon.png" sizes="32x32 64x64">
+        <link rel="stylesheet" type="text/css" href="style/main.css">        
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/form" class="active">Forms</a>
+                <a href="/table">Tables</a>
+                <a href="https://js-cse135-pa3.web.app/showdb">Database</a>
+            </nav>
+        </header>
+        <main>
+            <form id="quiz" action="http://httpbin.org/post" method="POST">
+                <label>Due date of this assignment: (readonly)</label>
+                <input id="due-date" name="due-date" type="date" value="2020-01-21" readonly>
+                <input id="formId" name="formId" type="hidden" value="moon-145">
+                <div>
+                    <label for="progress">Grading Pogress </label>
+                    <progress id="progress" max="100" value="60" > 60% </progress>
+                </div>
+                <hr/>
+                <fieldset>
+                    <legend>Moon Quiz</legend>
+                    <div>
+                        <label for="saturn-moon">What is the biggest moon of Saturn?</label>
+                        <input type="text" id="saturn-moon" name="saturn-moon" placeholder="Titan/Hyperion/Rhea/..." pattern="[A-Z][a-z]+">
+                    </div>
+                    <div>
+                        <label for="distance">Moon is about ___ Earths away from Earth</label>
+                        <input type="number" id="distance" name="distance" min="1" max="50" required>
+                    </div>
+                    <div>
+                        <label for="full-moon"> On which date is the full moon of Feburary 2020?</label>
+                        <input type="date" id="full-moon" name="full-moon" min="2020-02-01" max="2020-02-29">
+                    </div>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>Artemis is the goddess of the ____ ?</legend>
+                
+                    <input type="radio" id="hunt" name="goddess">
+                    <label for="hunt">hunt</label><br/>
+                
+                    <input type="radio" id="beauty" name="goddess">
+                    <label for="beauty">beauty</label><br/>
+                
+                    <input type="radio" id="wisdom" name="goddess">
+                    <label for="wisdom">wisdom</label>
+                </fieldset>
+                <input type="submit"/>
+            </form>
+
+            <form id="Comment" action="http://httpbin.org/post" method="POST">
+                <fieldset>
+                    <legend>Suggestion for this website</legend>
+                    <div>    
+                        <label>Rating:</label>
+                        <select name="rating" required>
+                            <option value="">--Please choose an option--</option>
+                            <optgroup label="low">
+                                <option value="1">1 star</option>
+                                <option value="2">2 star</option>
+                            </optgroup>
+                            <optgroup label="medium">
+                                <option value="3">3 star</option>
+                                <option value="4">4 star</option>
+                            </optgroup>
+                            <optgroup label="high">
+                                <option value="5">5 star</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="website-choice">Which website do you like the most?</label>
+                        <input list="favorite-websites" id="website-choice" name="website-choice" />
+                        <datalist id="favorite-websites">
+                            <option value="home">
+                            <option value="image">
+                            <option value="form">
+                            <option value="table">
+                            <option value="external">
+                        </datalist>
+                    </div>
+                    <div>
+                            <label for="color">If you can change the color theme of this website, 
+                                which color would you like it to be?</label>
+                            <input type="color" id="color" name="color">
+                        </div>
+                        <div>
+                            <br/>
+                            <label>Any suggestion for the website?</label><br>
+                            <textarea id="suggestion" name="suggestion" rows="8" cols="60"></textarea>
+                        </div>
+                </fieldset>
+                <div>
+                    <button type="submit" value="Save">Save</button>
+                </div>
+            </form>
+            <form oninput="result.value=parseInt(a.value)*parseInt(b.value)">
+                <fieldset>
+                    <div>
+                        <label>Approximation of the time in viewing the former 2 sites:</label>
+                        <br/>
+                        <meter id="time"
+                            min="0" max="120"
+                            low="40" high="80" optimum="30"
+                            value="40">
+                        </meter>
+                    </div>
+                    <div>
+                        <input type="number" id="a" name="a" value="10" />*
+                        <input type="range" id="b" name="b" min="10" max="20" value="15" /> 
+                        = <output name="result" for="a b">150</output>
+                    </div>
+                </fieldset>
+            </form>
+                
+                    
+        </main>
+        <script src="https://js-cse135-pa3.web.app/tracker.js"></script>
+        <noscript>Java Script is not on</noscript>
+    </body>
+
+</html>
