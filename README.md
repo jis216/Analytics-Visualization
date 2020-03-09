@@ -6,12 +6,9 @@
 ## Authentication  Implementation
 - Code
 - Libraries: use Firebase SDK for Javascript, specifically firebase.app and firebase.auth 
-- /login will sign in the user through email and password and get the idToken from Firebase. Then it will send this idToken to the endpoint `/sessionLogin`
-- endpoint '/sessionize' for you to get the cookie
-- Collection Structure:
-	- each session has its own collection named by its session id
-	- each collection is separated into 3 documents: static, loading, events
-	- each document has its corresponding fields specified in the table below.
+- 
+- `/login` will sign in the user through email and password and get the idToken from Firebase. Then it will send this idToken to the endpoint `/sessionLogin` in exchange for sessionCookie
+- `/signup` will sign up the user through email and password and redirect user to `/login` page.
 
 
 ## PoC Diagram
@@ -240,6 +237,6 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY4MDk2MTc4NSwtNjQ3NDg5NDUxLC0xOD
-IxMTE5MzgzXX0=
+eyJoaXN0b3J5IjpbNzI4NjE2MjY3LC02NDc0ODk0NTEsLTE4Mj
+ExMTkzODNdfQ==
 -->
