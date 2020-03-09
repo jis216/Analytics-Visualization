@@ -32,8 +32,16 @@
 	- To display the date, time, URI and related static browser info in grids. Each of the attributes mentioned is a grid column.
 
 ## Code Location
-- Grid: `hosting/reports/browsers.js`, ``
+- Grid: 
+	- `hosting/reports/`
+		- `browsers.js`
+		- `browsers.html`
+		- `grid.css`
 - Chart:
+	- `hosting/reports/`
+		- `browsers.js`
+		- `browsers.html`
+		- `grid.css`
 	
 ## Diagram and Wireframe
 - Diagram:
@@ -41,6 +49,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE1OTEzNDAyLC02NDc0ODk0NTEsLTE4Mj
-ExMTkzODNdfQ==
+eyJoaXN0b3J5IjpbLTk5NDM5OTM1NSwtNjQ3NDg5NDUxLC0xOD
+IxMTE5MzgzXX0=
 -->
