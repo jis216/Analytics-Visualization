@@ -21,12 +21,15 @@
 ![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/poc-diagram.jpg)
 
 ## PoC
-- Grid Library Discussion
 - Chart Library Discussion
+	- Library Used: high charts
+	- 
+- Grid Library Discussion
+	- Library Used
 
 ## Code Location
-- Grid Library Discussion
-- Chart Library Discussion
+- Grid:
+- Chart:
 	
 ## Diagram and Wireframe
 - Diagram:
@@ -34,6 +37,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0ODk0NzMxNywtNjQ3NDg5NDUxLC0xOD
-IxMTE5MzgzXX0=
+eyJoaXN0b3J5IjpbLTE1NDE4NjYyNjEsLTY0NzQ4OTQ1MSwtMT
+gyMTExOTM4M119
 -->
