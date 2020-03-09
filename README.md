@@ -3,12 +3,11 @@
 -   Discussion of the grid library you used (3pts)
 -   Discussion of the chart library you used (3pts)
 
-## Authentication Code Implementation
+## Authentication  Implementation
 - Code
-- Libraries: use Firebase SDK for Ja firebase.auth 
-- 
-- The could functions/endpoints are at https://us-central1-js-cse135-pa3.cloudfunctions.net/
-- Sessionization: takes approach 2 and has an endpoint '/sessionize' for you to get the cookie
+- Libraries: use Firebase SDK for Javascript, specifically firebase.app and firebase.auth 
+- /
+- endpoint '/sessionize' for you to get the cookie
 - Collection Structure:
 	- each session has its own collection named by its session id
 	- each collection is separated into 3 documents: static, loading, events
@@ -297,5 +296,5 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI4MDA5Mzk2NSwtMTgyMTExOTM4M119
+eyJoaXN0b3J5IjpbNzczODA0NDgwLC0xODIxMTE5MzgzXX0=
 -->
