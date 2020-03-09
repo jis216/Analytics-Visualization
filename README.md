@@ -6,9 +6,12 @@
 ## Authentication  Implementation
 - Code
 - Libraries: use Firebase SDK for Javascript, specifically firebase.app and firebase.auth 
-- 
-- `/login` will sign in the user through email and password and get the idToken from Firebase. Then it will send this idToken to the endpoint `/sessionLogin` in exchange for sessionCookie
-- `/signup` will sign up the user through email and password and redirect user to `/login` page.
+- Client Side:
+	- `/login` will sign in the user through email and password and get the idToken from Firebase. Then it will send this idToken to the endpoint `/sessionLogin` in exchange for sessionCookie
+	- `/signup` will sign up the user through email and password and redirect user to `/login` page.
+	- user will be redirected to `/dashboard` page after sign in. Whenever accessing the dash
+- Server Side:
+	- 
 
 
 ## PoC Diagram
@@ -237,6 +240,6 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzI4NjE2MjY3LC02NDc0ODk0NTEsLTE4Mj
+eyJoaXN0b3J5IjpbMTAzNjY5MzYzLC02NDc0ODk0NTEsLTE4Mj
 ExMTkzODNdfQ==
 -->
