@@ -29,7 +29,7 @@
 	- a pie chart to showcase the percentage of time each loading task spent in the total amount of time. [demo for pie chart](https://www.highcharts.com/demo/pie-legend/dark-unica)
 - Grid Library Discussion
 	- Library Used: ZingGrid
-	- To 
+	- To display the date, time, URI and related static browser info in grids. Each of the attributes mentioned is a grid column.
 
 ## Code Location
 - Grid:
@@ -41,6 +41,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTY4MjUxMjMyLC02NDc0ODk0NTEsLTE4Mj
-ExMTkzODNdfQ==
+eyJoaXN0b3J5IjpbLTEyODA1MjY5NTAsLTY0NzQ4OTQ1MSwtMT
+gyMTExOTM4M119
 -->
