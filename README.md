@@ -37,11 +37,16 @@
 	- `hosting/`
 		- `login.html`
 		- `signUp.html`
+	- `scripts/`
+		- `auth.js`
+		- `firebase-init.js`
 - Routing:
 	- `firebase.json`
 	- `hosting/`
 		- `dashboard.html`
-		- `admin.html` (only place holder)
+		- `admin.html` (currently just a place holder)
+	- `scripts/`
+		- `access-init.js`
 - Grid: 
 	- `hosting/reports/`
 		- `browsers.js`
@@ -49,9 +54,8 @@
 		- `grid.css`
 - Chart:
 	- `hosting/reports/`
-		- `browsers.js`
-		- `browsers.html`
-		- `grid.css`
+		- `speed.js`
+		- `speed.html`
 	
 ## Diagram and Wireframe
 - Diagram:
@@ -59,6 +63,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4NTQ3MDgxNiwtNjQ3NDg5NDUxLC0xOD
+eyJoaXN0b3J5IjpbLTUwOTM0ODgwMCwtNjQ3NDg5NDUxLC0xOD
 IxMTE5MzgzXX0=
 -->
