@@ -21,64 +21,8 @@
 	-	minified file: 8109 bytes (use minifier.org to shrink file size)
 - Optimization Process:
 	- First refactor some repetitive code to iteration:
-		- Original Code:
-		-	```
-			function  mouseAnalytics(mouseEvent){
-				localSetItem("events", "mouse-buttons", mouseEvent.buttons);
-		
-				localSetItem("events", "mouse-meta", mouseEvent.metaKey);
-				
-				localSetItem("events", "mouse-ctrl", mouseEvent.ctrlKey);
-				
-				localSetItem("events", "mouse-shift", mouseEvent.shiftKey);
-				
-				localSetItem("events", "mouse-alt", mouseEvent.altKey);
-				
-				localSetItem("events", "client-x", mouseEvent.screenX);
-				
-				localSetItem("events", "client-y", mouseEvent.screenY);
-				
-				localSetItem("events", "screen-x", mouseEvent.clientX);
-				
-				localSetItem("events", "screen-y", mouseEvent.clientY);
-				
-				localSetItem("events", "movement-x", mouseEvent.movementX);
-				
-				localSetItem("events", "movement-y", mouseEvent.movementY);
-			};
-			```
-
-		-	Refactored Code:
-		-	```
-			function  mouseAnalytics(mouseEvent){
-				const  mouseSet ={
-				
-					"mouse-buttons": mouseEvent.buttons,
-				
-					"mouse-meta": mouseEvent.metaKey,
-					
-					"mouse-ctrl": mouseEvent.ctrlKey,
-					
-					"mouse-shift": mouseEvent.shiftKey,
-					
-					"mouse-alt": mouseEvent.altKey,
-					
-					"client-x": mouseEvent.screenX,
-					
-					"client-y": mouseEvent.screenY,
-					
-					"screen-x": mouseEvent.clientX,
-					
-					"screen-y": mouseEvent.clientY,
-					
-					"movement-x": mouseEvent.movementX,
-					
-					"movement-y": mouseEvent.movementY
-				};
-				localSetBatch("events", mouseSet);
-			};
-			```
-	- Then use tools at [minifier.org](https://www.minifier.org/) to minify the refactored file
+		- 
+![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/database-structure.png)
 
 ## Endpoints List
 - Endpoints origin: https://us-central1-js-cse135-pa3.cloudfunctions.net/
@@ -296,5 +240,5 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg3ODg2MTAwNiwtMTgyMTExOTM4M119
+eyJoaXN0b3J5IjpbLTY0NzQ4OTQ1MSwtMTgyMTExOTM4M119
 -->
