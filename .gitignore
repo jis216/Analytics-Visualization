@@ -65,4 +65,4 @@ node_modules/
 .env
 
 #ignore all fonts upload
-*/Latin-Modern-Roman
+hosting/style/Latin-Modern-Roman
