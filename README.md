@@ -6,7 +6,7 @@
 ## Authentication  Implementation
 - Code
 - Libraries: use Firebase SDK for Javascript, specifically firebase.app and firebase.auth 
-- /
+- /login will sign in the user through email and password and get the idToken from Firebase. Then it will send this idToken to the endpoint `/sessionLogin`
 - endpoint '/sessionize' for you to get the cookie
 - Collection Structure:
 	- each session has its own collection named by its session id
@@ -240,5 +240,6 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY0NzQ4OTQ1MSwtMTgyMTExOTM4M119
+eyJoaXN0b3J5IjpbMTY4MDk2MTc4NSwtNjQ3NDg5NDUxLC0xOD
+IxMTE5MzgzXX0=
 -->
