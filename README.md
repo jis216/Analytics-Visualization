@@ -1,7 +1,4 @@
--   Brief overview of your authentication code and how you implemented it (including any code or libraries you needed) (3pts)
--   Diagram that shows how your PoC examples work together including their routes (3pts)
--   Discussion of the grid library you used (3pts)
--   Discussion of the chart library you used (3pts)
+# Step 2
 
 ## Authentication  Implementation
 - Code
@@ -62,6 +59,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NDE2NTAwNzcsLTY0NzQ4OTQ1MSwtMT
-gyMTExOTM4M119
+eyJoaXN0b3J5IjpbMzY3NDU4ODc4LC02NDc0ODk0NTEsLTE4Mj
+ExMTkzODNdfQ==
 -->
