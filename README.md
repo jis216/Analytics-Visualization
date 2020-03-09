@@ -16,11 +16,11 @@
 	- `/user-access`:
 
 
-## PoC Diagram
+## App Routing Diagram
 -	
 ![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/poc-diagram.jpg)
 
-## PoC
+## Chart & Grid
 - Chart Library Discussion
 	- Library Used: Highcharts
 	- Charts to use:
@@ -32,7 +32,7 @@
 	- To display the date, time, URI and related static browser info in grids. Each of the attributes mentioned is a grid column.
 
 ## Code Location
-- Grid:
+- Grid: `hosting/reports/browsers.js`, ``
 - Chart:
 	
 ## Diagram and Wireframe
@@ -41,6 +41,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODA1MjY5NTAsLTY0NzQ4OTQ1MSwtMT
-gyMTExOTM4M119
+eyJoaXN0b3J5IjpbMjE1OTEzNDAyLC02NDc0ODk0NTEsLTE4Mj
+ExMTkzODNdfQ==
 -->
