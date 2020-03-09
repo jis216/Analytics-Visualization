@@ -12,9 +12,9 @@
 	- each session has its own collection named by its session id
 	- each collection is separated into 3 documents: static, loading, events
 	- each document has its corresponding fields specified in the table below.
-![database-structure](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/database-structure.png)
 
-## Tracker Minifiy
+
+## PoC Diagram
 -	Minification File Sizes Comparison:
 	-	original file: 10,310 bytes
 	-	refactored file: 10,189 bytes (repetition -> iteration)
@@ -296,5 +296,5 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzczODA0NDgwLC0xODIxMTE5MzgzXX0=
+eyJoaXN0b3J5IjpbLTg3ODg2MTAwNiwtMTgyMTExOTM4M119
 -->
