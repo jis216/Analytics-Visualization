@@ -17,15 +17,16 @@
 
 
 ## PoC Diagram
--	Diagram that shows how your PoC examples work together including their routes (3pts)
--   Discussion of the grid library you used (3pts)
--   Discussion of the chart library you used (3pts)
-		- 
+-	
 ![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/poc-diagram.jpg)
 
-## Endpoints List
-- Endpoints origin: https://us-central1-js-cse135-pa3.cloudfunctions.net/
-- 
+## PoC
+- Grid Library Discussion
+- Chart Library Discussion
+
+## Code Location
+- Grid Library Discussion
+- Chart Library Discussion
 	
 ## Diagram and Wireframe
 - Diagram:
@@ -33,6 +34,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTgxNjMyNjgzLC02NDc0ODk0NTEsLTE4Mj
-ExMTkzODNdfQ==
+eyJoaXN0b3J5IjpbMTA0ODk0NzMxNywtNjQ3NDg5NDUxLC0xOD
+IxMTE5MzgzXX0=
 -->
