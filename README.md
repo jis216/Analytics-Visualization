@@ -38,9 +38,10 @@
 		- `login.html`
 		- `signUp.html`
 - Routing:
+	- `firebase.json`
 	- `hosting/`
-		- `login.html`
-		- `signUp.html`
+		- `dashboard.html`
+		- `admin.html` (only place holder)
 - Grid: 
 	- `hosting/reports/`
 		- `browsers.js`
@@ -58,6 +59,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjYzODc2MDgyLC02NDc0ODk0NTEsLTE4Mj
-ExMTkzODNdfQ==
+eyJoaXN0b3J5IjpbLTg4NTQ3MDgxNiwtNjQ3NDg5NDUxLC0xOD
+IxMTE5MzgzXX0=
 -->
