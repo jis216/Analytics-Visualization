@@ -23,6 +23,7 @@
 ## PoC
 - Chart Library Discussion
 	- Library Used: Highcharts
+	- [demo for column range chart]([https://www.highcharts.com/demo/columnrange/dark-unica(https://www.highcharts.com/demo/columnrange/dark-unica))
 	- 
 - Grid Library Discussion
 	- Library Used: ZingGrid
@@ -37,6 +38,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc5NDQ2NTcwOSwtNjQ3NDg5NDUxLC0xOD
+eyJoaXN0b3J5IjpbLTIwNTMxNzY4MiwtNjQ3NDg5NDUxLC0xOD
 IxMTE5MzgzXX0=
 -->
