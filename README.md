@@ -17,7 +17,6 @@
 
 
 ## App Routing Diagram
--	
 ![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/poc-diagram.jpg)
 
 ## Chart & Grid
@@ -63,6 +62,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUwOTM0ODgwMCwtNjQ3NDg5NDUxLC0xOD
-IxMTE5MzgzXX0=
+eyJoaXN0b3J5IjpbLTE0NDE2NTAwNzcsLTY0NzQ4OTQ1MSwtMT
+gyMTExOTM4M119
 -->
