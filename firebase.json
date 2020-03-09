@@ -19,16 +19,28 @@
       },
       {
         "source": "/*tracker*",
-        "destination": "/scripts/minified-tracker.js"
+        "destination": "/scripts/tracker.js"
       },
       {
-        "source": "/collect",
-        "function": "collect"
-      }, 
+        "source": "/collect/*",
+        "function": "app"
+      },
       {
         "source": "/sessionize",
-        "function": "sessionize"
-      } 
+        "function": "app"
+      },
+      {
+        "source": "/admin-access",
+        "function": "app"
+      },
+      {
+        "source": "/user-access",
+        "function": "app"
+      },
+      {
+        "source": "/sessionLogin",
+        "function": "app"
+      }
     ],
     "cleanUrls": true
   }

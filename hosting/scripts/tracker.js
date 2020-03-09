@@ -1,4 +1,5 @@
-const endpoint = "https://js-cse135-pa3.web.app/";
+const endpoint = "https://js-cse135-pa4.web.app/";
+//const endpoint = "https://us-central1-js-cse135-pa4.cloudfunctions.net/";
 var sessionID;
 var idleTime = 0;
 let localSession = {};
@@ -188,7 +189,7 @@ function setStatic(){
     img.onerror = function() {
         localSetItem("static", "images-on", false);
     };
-    img.src = "https://js-cse135-pa3.web.app/moon_icon.png";
+    img.src = "https://js-cse135-pa4.web.app/moon_icon.png";
 
     const color = getComputedStyle( document.querySelector("body") ).backgroundColor;
     const cssOn = (color == "rgb(240, 121, 65)");
@@ -228,6 +229,10 @@ function handler(evt) {
     
     if (evt.type == "beforeunload") {
         unloadAnalytics(evt);
+        sendDocument("events", localSession['events']);
+        //delete evt['returnValue'];
+        delete evt['returnValue'];
+        return;
     }  
     else{
         mouseAnalytics(evt);
@@ -304,10 +309,6 @@ window.addEventListener('load', () => {
     });
 });
 
-window.addEventListener("beforeunload", (event) => { 
-    sendDocument("events", localSession['events']);
-    delete event['returnValue'];
-});
 
 function mouseAnalytics(mouseEvent){
     const mouseSet = 
@@ -353,8 +354,6 @@ function scrollAnalytics(e){
 };
 
 function unloadAnalytics(e){
-    e.preventDefault();
-    e.returnValue = '';
     const timingP = performance.timing;
 
     const unloadSet = {

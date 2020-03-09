@@ -1,5 +1,5 @@
 //import JSONFormatter from 'json-formatter-js'
-const endpoint = "https://us-central1-js-cse135-pa3.cloudfunctions.net/";
+const endpoint = "https://js-cse135-pa4.web.app/";
 var collections = {};
 
 async function getCollections(){

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>User Signup</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <link type="text/css" rel="stylesheet" href="style/auth.css">
+    </head>
+    <body>
+        <h1>Analytics</h1>
+        <h3>Login</h3>
+        <div>
+            <form id="createForm" onsubmit="createAccount(event)">
+                <label>Username</label><br>
+                <input type="text" id="newUsername" value="" required maxlength="20"><br>
+                <label>Email</label><br>
+                <input type="email" id="newEmail" value="" required autocomplete="email"><br>
+                <label>Password</label><br>
+                <input type="password" id="newPassword" value="" maxlength="20" required autocomplete="current-password"><br>
+                <p class="alert"></p>
+                <button type="submit">Save</button> 
+            </form>
+        </div>
+        <h4 id="createAccountSuccess" hidden>Your account was created successfully! </h4>
+
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+        <script src="scripts/firebase-init.js"></script>
+        <script src="scripts/auth.js"></script>
+    </body>
+</html>

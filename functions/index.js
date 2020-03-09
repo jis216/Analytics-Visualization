@@ -2,27 +2,31 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const uuidv4 = require('uuid/v4');
 
-// firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyCxQpyysjeSrmO29Ru6_pEi3lzIw-gZQSM",
-    authDomain: "js-cse135-pa3.firebaseapp.com",
-    databaseURL: "https://js-cse135-pa3.firebaseio.com",
-    projectId: "js-cse135-pa3",
-    storageBucket: "js-cse135-pa3.appspot.com",
-    messagingSenderId: "598533563714",
-    appId: "1:598533563714:web:3c968ebc5f35bd66af14db",
-    measurementId: "G-9HSW5W79GV"
+const firebaseConfig = {
+    apiKey: "AIzaSyDaoHPwaIvHibFdsVieKLt_J9WrDjNLNHo",
+    authDomain: "js-cse135-pa4.firebaseapp.com",
+    databaseURL: "https://js-cse135-pa4.firebaseio.com",
+    projectId: "js-cse135-pa4",
+    storageBucket: "js-cse135-pa4.appspot.com",
+    messagingSenderId: "697908584043",
+    appId: "1:697908584043:web:afd2211ef0699329b39b2e",
+    measurementId: "G-DZ3F6MXWGX"
 };
 
 // set up firestore, express and other middlewares
 admin.initializeApp(firebaseConfig);
 var firestore = admin.firestore();
+
+// set up the express app, cors and cookie middleware
 const express = require('express');
 const cookieParser = require('cookie-parser')();
 const cors = require('cors')({
-    origin: ['https://jis216.github.io', 'https://js-cse135-pa3.web.app'],
+    origin: ['https://jis216.github.io', 'https://js-cse135-pa4.web.app', 'https://js-cse135-pa4.firebaseapp.com'],
     credentials: true
 });
+
+// set up the authentication object
+var auth = admin.auth();
 
 //check if the session id is a hex-number string that follows the pattern 8-4-4-4-12
 function testSessionID(input){
@@ -44,13 +48,109 @@ function tryParseJSON (jsonString){
     return false;
 }
 
-const session = express();
-session.use(cors);
-session.use(cookieParser);
+const app = express();
+app.use(cors);
+app.use(cookieParser);
+
+app.post('/sessionLogin', (req, res) => {
+    // Set session expiration to 30 minutes.
+    const timeToExpire = 60 * 30 * 1000;
+
+    console.log("request content:", req.body);
+
+    // const csrfToken = req.body.csrfToken.toString();
+    // // Guard against CSRF attacks.
+    // if (csrfToken !== req.cookies.csrfToken) {
+    //   res.status(401).send('UNAUTHORIZED REQUEST!');
+    //   return;
+    // }
+
+    // Get the ID token passed and the CSRF token.
+    const idToken = JSON.parse(req.body).idToken.toString();
+    
+    auth.verifyIdToken(idToken).then((decodedIdToken) => {
+        // Only process if the user just signed in in the last 5 minutes.
+        if (new Date().getTime() / 1000 - decodedIdToken.auth_time < 5 * 60) {
+            // Create session cookie and set it.
+            console.log('idToken', idToken, 'expiresIn', timeToExpire)
+
+            return auth.createSessionCookie(idToken, {'expiresIn': timeToExpire})
+        }
+        return null
+    }).then((sessionCookie) => {
+        if(sessionCookie){
+            console.log('sessionCookie: ', sessionCookie);
+            // Set cookie policy for session cookie.
+            const options = {maxAge: timeToExpire,  secure: true}; //httpOnly: true,
+            res.cookie('__session', sessionCookie, options);
+            res.status(200).send('cookie success!');
+            res.end();
+            console.log("session cookie success");
+        }
+        else{
+            // A user that was not recently signed in is trying to set a session cookie.
+            // To guard against ID token theft, require re-authentication.
+            res.status(401).send('Recent sign in required!');
+        }
+        return
+    }).catch( (error) => {
+        console.log("session error:", error);
+        res.status(401).send('sessionCookie error:', error);
+    });
+    
+});
+
+// Verify session cookie and check permissions for a user
+app.get('/user-access', (req, res) => {
+    const sessionCookie = req.cookies.__session || '';
+    // Verify the session cookie.
+    auth.verifySessionCookie(
+      sessionCookie, true /** checkRevoked */)
+      .then((decodedIdToken) => {
+        // TODO: send content for user-info
+        res.status(200).send(JSON.stringify(decodedIdToken));
+        return
+      })
+      .catch(error => {
+        console.log(error);
+        console.log('Need to login first');
+        // Session cookie is unavailable or invalid. Force user to login.
+        res.redirect('/login');
+        res.end();
+        
+      });
+});
+
+// Verify session cookie and check permissions for an administrator
+app.get('/admin-access', (req, res) => {
+    const sessionCookie = req.cookies.__session || '';
+    // Verify the session cookie.
+    auth.verifySessionCookie(sessionCookie, true)
+    .then((decodedIdToken) => {
+        // Check custom claims to confirm user is an admin.
+        if (decodedIdToken.admin === true) {
+            // TODO: send content for admin
+            res.status(200).send(JSON.stringify(decodedIdToken));
+        }
+        res.status(403).send('forbidden request');
+        return
+    })
+    .catch((error) => {
+        // Session cookie is unavailable or invalid. Force user to login.
+        res.redirect('/login');
+        res.end();
+        console.log('need to login first');
+    });
+});
+
+app.get('/sessionLogout', (req, res) => {
+    res.clearCookie('__session');
+    res.redirect('/login');
+    res.end();
+});
 
 //GET at '/session' -> generate session id and send set-cookie header
-session.get('/', (req, res) => {
-    //res.setHeader('Access-Control-Allow-Origin', req.origin);
+app.get('/sessionize', (req, res) => {
     //check if has a session already or not
     if( !(req.cookies && req.cookies.__session) ){
 
@@ -58,12 +158,9 @@ session.get('/', (req, res) => {
         let sessionID = uuidv4().toString();
         
         res.type('text/plain');
-        res.cookie('__session', sessionID, { 
-            'domain': 'us-central1-js-cse135-pa3.cloudfunctions.net', 
-            'path': '/', 
+        res.cookie('__session', sessionID, {
             'httpOnly': false,
             'SameSite': 'None',
-            'Secure': true
         });
 
         //send back sessionID
@@ -75,17 +172,11 @@ session.get('/', (req, res) => {
     }
     
 });
-exports.sessionize = functions.https.onRequest(session);
-
-const collection = express();
-collection.use(cors);
-collection.use(cookieParser);
 
 //POST at '/collect/document' -> update document or get document
-collection.post('/document', (req, res) => {
-    //res.setHeader('Access-Control-Allow-Origin', req.origin);
+app.post('/collect/document', (req, res) => {
     if( !(req.cookies && req.cookies.__session) ){
-        res.status(405).send('no cookie!');
+        res.status(401).send('no cookie!');
         return
     }
 
@@ -95,13 +186,6 @@ collection.post('/document', (req, res) => {
         return
     }
     let sessionID = req.cookies.__session;
-
-    // check if such collection exist (valid sessionID?)
-    let colRef = firestore.collection(sessionID);
-    if (!colRef){
-        res.status(400).send("collection doesn't exist");
-        return
-    }
     
     // check if the request body is a proper JSON
     let testDict = tryParseJSON(req.body);
@@ -109,6 +193,7 @@ collection.post('/document', (req, res) => {
         res.status(400).send('malformed request body');
         return
     }
+
     let dataDict = testDict;
 
     // check if the request body has 'operation' or not
@@ -127,10 +212,17 @@ collection.post('/document', (req, res) => {
         return
     }
 
+    // check if such collection exist (valid sessionID?)
+    let colRef = firestore.collection(sessionID);
+    if (!colRef){
+        res.status(403).send("collection doesn't exist");
+        return
+    }
+
     // check if the document exists
     let docRef = colRef.doc(docuNm);
     if (!docRef){
-        res.status(400).send("document doesn't exist");
+        res.status(403).send("document doesn't exist");
         return
     }
             
@@ -143,7 +235,7 @@ collection.post('/document', (req, res) => {
             }
             return
         }).catch( (error) => {
-            res.status(405).send("get document error: ", error);
+            res.status(500).send("get document error: ", error);
         });
     } else if (op === "setData"){
         docRef.set(dataDict);
@@ -157,10 +249,9 @@ collection.post('/document', (req, res) => {
 
 
 //GET at '/collect/collection' -> return the collection specified by the cookie
-collection.get('/collection', (req, res) => {
-    //res.setHeader('Access-Control-Allow-Origin', req.origin);
+app.get('/collect/collection', (req, res) => {
     if( !(req.cookies && req.cookies.__session) ){
-        res.status(405).send('no cookie!');
+        res.status(401).send('no cookie!');
         return
     }
 
@@ -195,9 +286,7 @@ collection.get('/collection', (req, res) => {
 });
 
 //POST at '/collect/collection', request is the collection name (plain text)
-collection.post('/collection', (req, res) => {
-    //res.setHeader('Access-Control-Allow-Origin', req.origin);
-
+app.post('/collect/collection', (req, res) => {
     // forbid mal-formed id => if wrong format, return
     if (!testSessionID(req.body)){
         res.status(400).send('malformed session id');
@@ -227,9 +316,7 @@ collection.post('/collection', (req, res) => {
 });
 
 //GET at '/collect/all', return names of all collections
-collection.get('/all', (_, res) => {
-    //res.setHeader('Access-Control-Allow-Origin', req.origin);
-
+app.get('/collect/all', (_, res) => {
     let collections = [];
     firestore.listCollections().then(allCollections => {
         for (let collection of allCollections) {
@@ -245,11 +332,9 @@ collection.get('/all', (_, res) => {
     
 });
 
-// set the /collect endpoint
-exports.collect = functions.https.onRequest(collection);
+app.get("/showdb", (_, res) => { 
+    res.redirect('https://js-cse135-pa4.web.app/showdb.html');
+    res.end();
+});
 
-// endpoint /showdb redirects you to the web app showdb site
-exports.showdb = functions.https.onRequest((req, res) =>{
-    res.redirect('https://js-cse135-pa3.web.app/showdb.html');
-   
-})
+exports.app = functions.https.onRequest(app);

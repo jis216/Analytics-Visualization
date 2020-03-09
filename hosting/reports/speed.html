@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Jiayue Sun">
+        <title>Table Page</title>
+        <link rel="icon" href="../moon_icon.png" sizes="32x32 64x64">
+        <link rel="stylesheet" type="text/css" href="../style/main.css">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+        <script src="../scripts/access-init.js"></script>
+    </head>
+    <body>
+        <main class="table">
+            <figure class="highcharts-figure">
+                <div id="loadingTimeRange" style="width:100%; height:400px;"></div>
+                <p class="highcharts-description">
+                    Chart showing average time spent in each loading task  using horizontal columns. 
+                </p>
+            </figure>
+            <table>
+                <caption>Performance Information</caption>
+                <thead class="colored">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody class="colored">
+                    <tr id="navig-start">
+                        <td>navigation start</td>
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="load-end">
+                        <td>load event end</td>
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="time-taken">
+                        <td>time in between</td>
+                        <td class="val"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <section>
+                <table id="unload-summary">
+                    <caption>Unload Event Information</caption>
+                    <tbody class="colored">
+                        <tr id="unloading-start">
+                            <td>unloadEventStart</td>
+                            <td class="val"></td>
+                        </tr>
+                        <tr id="unloading-end">
+                            <td>unloadEventEnd</td>
+                            <td class="val"></td>
+                        </tr>
+                        <tr id="unloading-diff">
+                            <td>unloadEnd - unloadStart</td>
+                            <td class="val"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <script src='speed.js'></script>
+        <noscript>Java Script is not on</noscript>
+    </body>
+</html>

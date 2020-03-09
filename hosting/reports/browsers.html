@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Jiayue Sun">
+        <title>Table Page</title>
+        <link rel="icon" href="../moon_icon.png" sizes="32x32 64x64">
+        <link rel="stylesheet" type="text/css" href="../style/main.css">
+        <link rel="stylesheet" type="text/css" href="grid.css">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+        <script src="../scripts/access-init.js"></script>
+    </head>
+    <body>
+        <main class="table">
+            <div>
+                <zing-grid 
+                    caption="Browser Statics"
+                    sort
+                    search
+                    layout="row"
+                    viewport-stop>
+                </zing-grid>
+            </div>
+            <table id="static">
+                <caption>Static Data</caption>
+                <colgroup>
+                    <col span="1" id="weekdays">
+                    <col span="1" id="weekends">
+                </colgroup>
+                <thead class="colored">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody class="colored">
+                    <tr id="my-user-agent">
+                        <td>user-agent</td>
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="user-language">
+                        <td>user language</td>
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="cookie-on">
+                        <td>cookies being on</td>
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="images-on">
+                        <td>images being on</td>
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="javascript-on">
+                        <td>javascript being on</td>
+                        <td class="val"> false </td>
+                    </tr>
+                    <tr id="css-on">
+                        <td>css being on</td>
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="screen-height">
+                        <td>screen height</td> 
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="screen-width">
+                        <td>screen width</td> 
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="window-height">
+                        <td>window height</td> 
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="window-width">
+                        <td>window width</td> 
+                        <td class="val"></td>
+                    </tr>
+                    <tr id="effective-connection-type">
+                        <td>effective connection type</td> 
+                        <td class="val"></td>
+                    </tr>
+                </tbody>
+                <tfoot class="colored">
+                   
+                </tfoot>
+            </table>
+        </main>
+        <script src='browsers.js'></script>
+        <noscript>Java Script is not on</noscript>
+    </body>
+</html>

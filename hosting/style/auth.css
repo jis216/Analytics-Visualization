@@ -1,0 +1,87 @@
+body{
+    background-color: rgb(240, 121, 65);
+}
+
+div{
+    display: block;
+    text-align: center;
+}
+form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+h1{
+    color: lightyellow;
+    font-family: Arial, Helvetica, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+    text-shadow: 2px 1px gray;
+    margin: 30px 0px;
+    font-size: 48px;
+}
+h3{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+}
+p a{
+    text-decoration: underline;
+}
+
+dialog{
+    border-radius: 20px;
+    border-width: 2px;
+}
+
+form label, p{
+    color: midnightblue;
+    margin: 5px;
+    font-family: 'American Typewriter', serif;
+    font-size: medium;
+}
+
+form input{
+    margin: 5px;
+    padding: 0px 5px;
+    border: none;
+    border-bottom: 2px gray solid;
+    width: 200px;
+    height: 30px;
+    font-family: 'American Typewriter', serif;
+    font-size: small;
+}
+
+form button{
+    margin: 10px 10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: large;
+}
+
+button, .editIcon, .deleteIcon{
+    cursor: pointer;
+}
+button[type="button"]{
+    background-color: rgb(190, 190, 190);
+}
+
+button[type="button"]:hover{
+    background-color: gray;
+}
+
+button[type="submit"]{
+    background-color: rgb(64, 82, 241);
+    color: white;
+}
+button[type="submit"]:hover{
+    background-color: rgb(103, 117, 241);
+}
+
+.alert{
+    color: red;
+}
