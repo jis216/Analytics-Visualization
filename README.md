@@ -1,6 +1,12 @@
-## Collection and Sessionization Architecture
-- The test website is at: jis216.github.io
-- The tracker file and database visualization files are hosted at: https://js-cse135-pa3.web.app
+-   Brief overview of your authentication code and how you implemented it (including any code or libraries you needed) (3pts)
+-   Diagram that shows how your PoC examples work together including their routes (3pts)
+-   Discussion of the grid library you used (3pts)
+-   Discussion of the chart library you used (3pts)
+
+## Authentication Code Implementation
+- Code
+- Libraries: use Firebase SDK for Ja firebase.auth 
+- 
 - The could functions/endpoints are at https://us-central1-js-cse135-pa3.cloudfunctions.net/
 - Sessionization: takes approach 2 and has an endpoint '/sessionize' for you to get the cookie
 - Collection Structure:
@@ -291,5 +297,5 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MjExMTkzODNdfQ==
+eyJoaXN0b3J5IjpbMTI4MDA5Mzk2NSwtMTgyMTExOTM4M119
 -->
