@@ -11,17 +11,13 @@
 	- `/signup` will sign up the user through email and password and redirect user to `/login` page.
 	- user will be redirected to `/dashboard` page after sign in. Whenever accessing this page, the page will automatically send a request to endpoint `/user-access` to see if the user can access dashboard.
 	- whenever accessing `/admin` page, the page will automatically send a request to endpoint `/admin-access` to see if the user have the access to administrator resources.
-- Server Side:
-	- 
+- Server Side Endpoints:
+	- `/sessionLogin`: verify idToken in the request and send a session cookie
+	- `/user-access`:
 
 
 ## PoC Diagram
--	Minification File Sizes Comparison:
-	-	original file: 10,310 bytes
-	-	refactored file: 10,189 bytes (repetition -> iteration)
-	-	minified file: 8109 bytes (use minifier.org to shrink file size)
-- Optimization Process:
-	- First refactor some repetitive code to iteration:
+-	
 		- 
 ![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/database-structure.png)
 
@@ -241,6 +237,6 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAyMTkxODExMywtNjQ3NDg5NDUxLC0xOD
-IxMTE5MzgzXX0=
+eyJoaXN0b3J5IjpbMjEwMzU5Njc5LC02NDc0ODk0NTEsLTE4Mj
+ExMTkzODNdfQ==
 -->
