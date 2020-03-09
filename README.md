@@ -22,10 +22,10 @@
 
 ## PoC
 - Chart Library Discussion
-	- Library Used: high charts
+	- Library Used: Highcharts
 	- 
 - Grid Library Discussion
-	- Library Used
+	- Library Used: ZingGrid
 
 ## Code Location
 - Grid:
@@ -37,6 +37,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDE4NjYyNjEsLTY0NzQ4OTQ1MSwtMT
-gyMTExOTM4M119
+eyJoaXN0b3J5IjpbMTc5NDQ2NTcwOSwtNjQ3NDg5NDUxLC0xOD
+IxMTE5MzgzXX0=
 -->
