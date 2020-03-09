@@ -9,7 +9,8 @@
 - Client Side:
 	- `/login` will sign in the user through email and password and get the idToken from Firebase. Then it will send this idToken to the endpoint `/sessionLogin` in exchange for sessionCookie
 	- `/signup` will sign up the user through email and password and redirect user to `/login` page.
-	- user will be redirected to `/dashboard` page after sign in. Whenever accessing this page, the page will automatically send a request to endpoint `/user-access` to see if the user can access dashboard ().
+	- user will be redirected to `/dashboard` page after sign in. Whenever accessing this page, the page will automatically send a request to endpoint `/user-access` to see if the user can access dashboard.
+	- whenever accessing `/admin` page, the page will automatically send a request to endpoint `/admin-access` to see if the user have the access to administrator resources.
 - Server Side:
 	- 
 
@@ -240,6 +241,6 @@
 </table>
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNDcxNTEyMjcsLTY0NzQ4OTQ1MSwtMT
-gyMTExOTM4M119
+eyJoaXN0b3J5IjpbMTAyMTkxODExMywtNjQ3NDg5NDUxLC0xOD
+IxMTE5MzgzXX0=
 -->
