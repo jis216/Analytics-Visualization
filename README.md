@@ -25,10 +25,11 @@
 	- Library Used: Highcharts
 	- Charts to use:
 	- a column range chart to showcase the time each loading task takes (e.g. loadEvent, DOM, request, response). [demo for column range chart](https://www.highcharts.com/demo/columnrange/dark-unica)
-	- a data series plot that showcase the loadin[demo for data series plot](https://www.highcharts.com/demo/line-labels/dark-unica)
-	- [demo for pie chart](https://www.highcharts.com/demo/pie-legend/dark-unica)
+	- a data series plot that showcase how the average loading time changes over days. [demo for data series plot](https://www.highcharts.com/demo/line-labels/dark-unica)
+	- a pie chart to showcase the percentage of time each loading task spent in the total amount of time. [demo for pie chart](https://www.highcharts.com/demo/pie-legend/dark-unica)
 - Grid Library Discussion
 	- Library Used: ZingGrid
+	- To 
 
 ## Code Location
 - Grid:
@@ -40,6 +41,6 @@
 - Wireframe:
 ![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUwNDgxNzExOSwtNjQ3NDg5NDUxLC0xOD
-IxMTE5MzgzXX0=
+eyJoaXN0b3J5IjpbOTY4MjUxMjMyLC02NDc0ODk0NTEsLTE4Mj
+ExMTkzODNdfQ==
 -->
