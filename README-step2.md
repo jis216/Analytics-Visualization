@@ -14,7 +14,7 @@
 
 
 ## App Routing Diagram
-![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/poc-diagram.jpg)
+![PoC diagram](/demo_imgs/poc-diagram.jpg)
 
 ## Chart & Grid
 - Chart Library Discussion
@@ -55,6 +55,6 @@
 	
 ## Diagram and Wireframe
 - Diagram:
-![Diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/diagram.png)
+![Diagram](/demo_imgs/diagram.png)
 - Wireframe:
-![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
+![Wireframe](/demo_imgs/wireframe.png)
