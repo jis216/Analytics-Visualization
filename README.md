@@ -21,7 +21,7 @@
 -   Discussion of the grid library you used (3pts)
 -   Discussion of the chart library you used (3pts)
 		- 
-![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/database-structure.png)
+![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/poc-diagram.jpg)
 
 ## Endpoints List
 - Endpoints origin: https://us-central1-js-cse135-pa3.cloudfunctions.net/
@@ -29,10 +29,10 @@
 	
 ## Diagram and Wireframe
 - Diagram:
-![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/database-structure.png)
+![Diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/diagram.png)
 - Wireframe:
-![PoC diagram](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/database-structure.png)
+![Wireframe](https://github.com/jis216/jis216.github.io/blob/master/demo_imgs/wireframe.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTI1NTc5NjM5MCwtNjQ3NDg5NDUxLC0xOD
-IxMTE5MzgzXX0=
+eyJoaXN0b3J5IjpbNTgxNjMyNjgzLC02NDc0ODk0NTEsLTE4Mj
+ExMTkzODNdfQ==
 -->
