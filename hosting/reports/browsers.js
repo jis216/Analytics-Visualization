@@ -34,14 +34,13 @@ getCollections().then(async (databaseAll) => {
     for (const col of databaseAll) {
         const oneCollect = await getCollection(col);
         let browserData = oneCollect.static;
-        browserData['sesssionID'] = col;
+        browserData['sessionID'] = col;
 
         let ordered_data = {};
         let column_order = 
-        ['sesssionID',
+        ['sessionID',
         'screen-width', 'screen-height',
-        'window-width','window-height',
-        'css-on','javascript-on','cookie-on',
+        'javascript-on','cookie-on',
         'effective-connection-type',
         'user-language', 'my-user-agent'];
         column_order.forEach((key) => {

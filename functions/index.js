@@ -21,7 +21,7 @@ var firestore = admin.firestore();
 const express = require('express');
 const cookieParser = require('cookie-parser')();
 const cors = require('cors')({
-    origin: ['https://jis216.github.io', 'https://js-cse135-pa4.web.app', 'https://js-cse135-pa4.firebaseapp.com'],
+    origin: ['https://jis216.github.io', 'https://js-cse135-pa4.web.app', 'https://js-cse135-pa4.firebaseapp.com', 'http://localhost:5000'],
     credentials: true
 });
 

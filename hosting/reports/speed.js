@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     Highcharts.chart('loadingTimeRange', {
         chart: {
             type: 'columnrange',
@@ -52,4 +52,4 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         }]
     });
-});
+},  true);
