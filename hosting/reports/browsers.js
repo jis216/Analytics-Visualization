@@ -40,11 +40,17 @@ getCollections().then(async (databaseAll) => {
         let column_order = 
         ['sessionID',
         'screen-width', 'screen-height',
-        'javascript-on','cookie-on',
+        'javascript-on',
         'effective-connection-type',
         'user-language', 'my-user-agent'];
         column_order.forEach((key) => {
-            ordered_data[key] = browserData[key];
+            if (key == 'javascript-on'){
+                ordered_data['JS-is-on'] = browserData[key];
+            }
+            else{
+                ordered_data[key] = browserData[key];
+            }
+            
         });
 
         collections.push(ordered_data); 

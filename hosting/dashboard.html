@@ -17,12 +17,20 @@
                 <div class="dropdown-menu">
                   <a href="/profile">Profile</a>
                   <a href="/admin" hidden id="manage-link">Manage Users</a>
-                  <a>Sign out</a>
+                  <a id="sign-out">Sign out</a>
                 </div>
                 <a href="../dashboard.html">Dashboard</a>
-                <a href="speed.html" class="active">Speed</a>
-                <a href="browsers.html" class="active">Browsers</a>
+                <a href="/reports/speed" class="active">Speed</a>
+                <a href="/reports/browsers" class="active">Browsers</a>
               </div>
+              <dialog id="signOutDialog">
+                <form class="dialog" method="dialog">
+                  <p>Are you sure that you want to sign out?</p>
+                  <div>
+                    <button id="confirmBtn" value="">Confirm</button>
+                  </div>
+                </form>
+              </dialog>
         </header>
         <main class="main-side">
             <h1>Your Dashboard</h1>
@@ -30,13 +38,18 @@
                 <a href="./reports/speed.html">
                     <h3>Speed Statistics</h3>
                 </a>
-                <iframe src="reports/speed" width="800" height="600"></iframe>
+                
+                <div class="speed">
+                    <iframe class="speed" src="reports/speed" scrolling="no"></iframe>
+                </div>
             </div>
             <div>
                 <a href="./reports/browsers.html">
                     <h3>Browser Statistics</h3>
                 </a>
-                <iframe src="reports/browsers" width="800" height="600"></iframe>
+                <div class="browser">
+                    <iframe class="browser" src="reports/browsers" scrolling="no"></iframe>
+                </div>
             </div>      
         </main>
         <script src="../scripts/page-common.js"></script>

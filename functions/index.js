@@ -53,8 +53,8 @@ app.use(cors);
 app.use(cookieParser);
 
 app.post('/sessionLogin', (req, res) => {
-    // Set session expiration to 30 minutes.
-    const timeToExpire = 60 * 30 * 1000;
+    // Set session expiration to 2 hours.
+    const timeToExpire = 2 * 60 * 60 * 1000;
 
     console.log("request content:", req.body);
 
@@ -69,14 +69,11 @@ app.post('/sessionLogin', (req, res) => {
     const idToken = JSON.parse(req.body).idToken.toString();
     
     auth.verifyIdToken(idToken).then((decodedIdToken) => {
-        // Only process if the user just signed in in the last 30 minutes.
-        if (new Date().getTime() / 1000 - decodedIdToken.auth_time < 30 * 60) {
-            // Create session cookie and set it.
-            console.log('idToken', idToken, 'expiresIn', timeToExpire)
+        // Create session cookie and set it.
+        console.log('idToken', idToken, 'expiresIn', timeToExpire)
 
-            return auth.createSessionCookie(idToken, {'expiresIn': timeToExpire})
-        }
-        return null
+        return auth.createSessionCookie(idToken, {'expiresIn': timeToExpire})
+        
     }).then((sessionCookie) => {
         if(sessionCookie){
             console.log('sessionCookie: ', sessionCookie);
@@ -266,8 +263,7 @@ app.get('/admin-access', (req, res) => {
 
 app.get('/sessionLogout', (req, res) => {
     res.clearCookie('__session');
-    res.redirect('/login');
-    res.end();
+    res.status(200).send('to /login');
 });
 
 //GET at '/session' -> generate session id and send set-cookie header

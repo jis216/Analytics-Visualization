@@ -12,6 +12,29 @@
         <!--<script src="../scripts/access-init.js"></script>-->      
     </head>
     <body>
+        <header>
+            <div class="sidenav">
+                <button class="avatar-block">
+                    <img src="../imgs/avatar.jpg" class="avatar-icon">
+                </button>
+                <div class="dropdown-menu">
+                  <a href="../profile.html">Profile</a>
+                  <a href="../admin.html" hidden id="manage-link">Manage Users</a>
+                  <a id= "sign-out">Sign out</a>
+                </div>
+                <a href="../dashboard.html">Dashboard</a>
+                <a href="/reports/speed" class="active">Speed</a>
+                <a href="/reports/browsers" class="active">Browsers</a>
+              </div>
+              <dialog id="signOutDialog">
+                <form class="dialog" method="dialog">
+                  <p>Are you sure that you want to sign out?</p>
+                  <div>
+                    <button id="confirmBtn" value="">Confirm</button>
+                  </div>
+                </form>
+              </dialog>
+        </header>
         <main class="main-side">
             <div>
                 <h1>User Management</h1>
@@ -28,6 +51,7 @@
                 <button id="user-submit">Submit Changes</button>
             </div>
         </main>
+        <script src="../scripts/page-common.js"></script>
         <script src='scripts/admin.js'></script>
         <noscript>Java Script is not on</noscript>
     </body>

@@ -7,10 +7,11 @@
         <link rel="icon" href="../moon_icon.png" sizes="32x32 64x64">
         <link rel="stylesheet" type="text/css" href="../style/main.css">
         <link rel="stylesheet" type="text/css" href="../style/chart.css">
+        <link rel="stylesheet" type="text/css" href="../style/grid.css">
+        <script src="../scripts/access-init.js"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
-        <script src="../scripts/access-init.js"></script>
     </head>
     <body>
         <header>
@@ -21,12 +22,20 @@
                 <div class="dropdown-menu">
                   <a href="../profile.html">Profile</a>
                   <a href="../admin.html" hidden id="manage-link">Manage Users</a>
-                  <a>Sign out</a>
+                  <a id="sign-out">Sign out</a>
                 </div>
                 <a href="../dashboard.html">Dashboard</a>
-                <a href="speed.html" class="active">Speed</a>
-                <a href="browsers.html" class="active">Browsers</a>
+                <a href="/reports/speed" class="active">Speed</a>
+                <a href="/reports/browsers" class="active">Browsers</a>
               </div>
+              <dialog id="signOutDialog">
+                <form class="dialog" method="dialog">
+                  <p>Are you sure that you want to sign out?</p>
+                  <div>
+                    <button id="confirmBtn" value="">Confirm</button>
+                  </div>
+                </form>
+              </dialog>
         </header>
         <main class="main-side">
             <h1>Speed Statistics</h1>

@@ -42,6 +42,10 @@
         "function": "app"
       },
       {
+        "source": "/sessionLogout",
+        "function": "app"
+      },
+      {
         "source": "/user",
         "function": "app"
       },

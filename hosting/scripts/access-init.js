@@ -43,6 +43,15 @@ fetch(url, {
 }).then(resJSON => {
     if (resJSON){
         userRecord = resJSON;
+        if( document.getElementById('manage-link')){
+            if(userRecord.admin){
+                document.getElementById('manage-link').style = "{display: block;}";
+            }
+            else{
+                document.getElementById('manage-link').style = "{display: none;}";
+            }
+        }
+        
     }
     return
 

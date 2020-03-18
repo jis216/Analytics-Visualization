@@ -51,18 +51,26 @@ getUsers().then(async (userResults) => {
         console.log('no users')
         return
     }
+    console.log(userResults);
     for (const u of userResults) {
         let ordered_data = {};
-        let column_order = ['uid','email', 'display-name']; // , 'userType'
+        let column_order = ['uid','email', 'displayName'];
         column_order.forEach((key) => {
             ordered_data[key] = u[key];
         });
 
-        let meta_order = ['creationTime', 'lastSignInTime']; // , 'userType'
+        if(u.customClaims){
+            ordered_data['is-admin'] = u.customClaims['admin'];
+        }
+        else{
+            ordered_data['is-admin'] = false;
+        }
+
+        let meta_order = ['creationTime', 'lastSignInTime'];
         meta_order.forEach((key) => {
             ordered_data[key] = u.metadata[key];
         });
-
+        
         users.push(ordered_data); 
     }
     console.log('users:');
