@@ -15,46 +15,67 @@ function getCookie(name) {
 //     window.location.href = 'index.html';
 // }
 
-const endpoint = "https://js-cse135-pa4.web.app/";
+endpoint = "https://js-cse135-pa4.web.app/";
 
 function createAccount(e){
     e.preventDefault();
-    console.log("create account!");
 
     let email = document.getElementById('newEmail').value;
     let password = document.getElementById('newPassword').value;
-    console.log("email:",email, "pw:",password);
+    let userName = document.getElementById('newUsername').value;
+    let requestBody = {
+        "email":email, 
+        "password": password, 
+        "displayName": userName
+    };
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    let url = endpoint + "user";
+    fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        body: JSON.stringify(requestBody)
+    })
+    .then((res) => {
+        if (res.status == 200){
+            return res.json();
+        }
+        return null;
+    })
     .then((result) => {
-        console.log("create user success: ",result);
-        window.location.assign('/login');
+        if(result){
+            console.log("create success");
+            createSuccess();
+        }
+        else{
+            console.log('create User Failure');
+        }
     })
     .catch((error) => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(error);
+        console.error('create User Error:', error);
     });
 }
 
 function createSuccess(){
     document.getElementById('createAccountSuccess').hidden = false;
+    window.location.assign("/login");
+
 }
 
 function updateAccount(userInfoConfig){
         
-    console.log('send update request: ', userInfoConfig);
-    let url = endpoint + "userUpdate";
+    let url = endpoint + "user";
     fetch(url, {
         method: 'PUT',
         mode: 'cors',
         credentials: 'include',
         body: JSON.stringify(userInfoConfig)
     })
-    .then((response) => {
-        console.log('response return');
-        return response.json();
+    .then((res) => {
+        if (res.status == 200){
+            return res.json();
+        }
+        return null;
     })
     .then((result) => {
         if(result){
@@ -65,7 +86,6 @@ function updateAccount(userInfoConfig){
             console.log('update User Failure');
             updateFailure();
         }
-        console.log(result);
     })
     .catch((error) => {
         console.error('update User Error:', error);
@@ -102,11 +122,7 @@ function signIn(e){
         console.log('user:',userCredentials.user);
         userCredentials.user.getIdToken()
         .then((idToken) => {
-            // Session login endpoint is queried and the session cookie is set.
-            // CSRF protection should be taken into account.
-            // ...
-            // const csrfToken = getCookie('csrfToken');
-            // return postIdTokenToSessionLogin('/sessionLogin', idToken, csrfToken);
+            
             let requestBody = {'idToken': idToken};
         
             console.log('send login request: ', requestBody);

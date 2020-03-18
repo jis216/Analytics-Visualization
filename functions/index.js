@@ -154,11 +154,42 @@ app.put('/user/:uid', (req, res) =>{
         console.log('Error updating a user');
         
         res.status(403).send(JSON.stringify({}));
-        
     });
 });
 
-app.put('/userUpdate', (req, res) =>{
+// create a new user
+app.post('/user', (req, res) => {
+
+    // check if the request body is a proper JSON
+    let testDict = tryParseJSON(req.body);
+    if(testDict === false){
+        res.status(400).send('malformed request body');
+        return
+    }
+
+    let dataDict = testDict;
+
+    admin.auth().createUser({
+        email: dataDict.email,
+        password: dataDict.password,
+        displayName: dataDict.displayName,
+    }).then((userRecord) => {
+        console.log('Successfully created new user:', userRecord.uid);
+
+        // add administrator privilege to certain users
+        if ( dataDict.email.endsWith('@admin.ucsd.edu') || dataDict.email.includes('cse135grader')) {
+            admin.auth().setCustomUserClaims(userRecord.uid, {admin: true});
+        }
+        res.status(200).send(JSON.stringify(userRecord.uid));
+        return;
+    }).catch((error) => {
+        console.log('Error creating new user:', error);
+        res.status(403).send(JSON.stringify(error));
+    });
+
+})
+
+app.put('/user', (req, res) =>{
     const sessionCookie = req.cookies.__session || '';
 
     // check if the request body is a proper JSON
@@ -200,8 +231,7 @@ app.put('/userUpdate', (req, res) =>{
 app.get('/user-access', (req, res) => {
     const sessionCookie = req.cookies.__session || '';
     // Verify the session cookie.
-    auth.verifySessionCookie(
-      sessionCookie, true /** checkRevoked */)
+    auth.verifySessionCookie(sessionCookie)
       .then((decodedIdToken) => {
         res.status(200).send(JSON.stringify(decodedIdToken));
         return
@@ -431,30 +461,3 @@ app.get("/showdb", (_, res) => {
 });
 
 exports.app = functions.https.onRequest(app);
-
-// On sign up.
-exports.processSignUp = functions.auth.user().onCreate((user) => {
-    // Check if user meets role criteria.
-    if (user.email && user.email.endsWith('@admin.ucsd.edu')) {
-        const customClaims = { admin: true };
-
-        return auth.setCustomUserClaims(user.uid, customClaims)
-        .then(() => {
-            console.log('an admin user built');
-            return
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }
-    else{
-        return auth.setCustomUserClaims(user.uid, { admin: false })
-        .then(() => {
-            console.log('an analyst user built');
-            return
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }
-  });

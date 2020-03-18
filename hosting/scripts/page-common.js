@@ -1,3 +1,5 @@
+import { NONAME } from "dns";
+
 var dropdown = document.getElementsByClassName("avatar-block");
 var i;
 
@@ -11,4 +13,11 @@ for (i = 0; i < dropdown.length; i++) {
       dropdownContent.style.display = "block";
     }
   });
+}
+
+if (userRecord.admin){
+  document.getElementById('manage-link').style = "{display: block;}";
+}
+else{
+  document.getElementById('manage-link').style = "{display: none;}";
 }

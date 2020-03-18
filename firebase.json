@@ -42,7 +42,7 @@
         "function": "app"
       },
       {
-        "source": "/userUpdate",
+        "source": "/user",
         "function": "app"
       },
       {

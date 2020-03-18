@@ -7,6 +7,9 @@ switch(pageName){
     case 'dashboard':
         pageType = 'user';
         break;
+    case 'profile':
+        pageType = 'user';
+        break;
     case 'reports/browsers':
         pageType = 'user';
         break;
