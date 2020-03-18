@@ -296,7 +296,7 @@ div.browser{
     border: 3px solid darkorange;
     overflow: hidden;
     margin: 15px auto;
-    max-width: 1100px;
+    max-width: 600px;
 }
 
 iframe.browser {
@@ -305,7 +305,7 @@ iframe.browser {
     margin-top: -180px;
 
     height: 550px;
-    width: 1800px;
+    width: 900px;
 }
 
 

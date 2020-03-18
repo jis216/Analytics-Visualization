@@ -7,10 +7,10 @@
         <link rel="icon" href="../moon_icon.png" sizes="32x32 64x64">
         <link rel="stylesheet" type="text/css" href="../style/main.css">
         <link rel="stylesheet" type="text/css" href="../style/grid.css">
-        <script src="../scripts/access-init.js"></script>
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
-        
+        <script type="text/javascript" src="../scripts/access-init.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+        <script type="text/javascript" src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+        <script type="text/javascript" src="ua-parser.js"></script>s
     </head>
     <body>
         <header>
@@ -38,13 +38,24 @@
         </header>
         <main class="main-side">
             <h1>Browsers Analytics</h1>
-            <zing-grid 
+            <div id="browser-chart-container">
+                <figure class="highcharts-figure">
+                    <div id="browser-prop"></div>
+                    <p class="highcharts-description">
+                        Chart showing average time spent in each loading task  using horizontal columns. 
+                    </p>
+                </figure>
+            </div>
+            <div>
+                <zing-grid 
                 caption="Browser Statics"
                 sort
                 search
                 layout="row"
                 viewport-stop>
-            </zing-grid>
+                </zing-grid>
+            </div>
+            
         </main>
         <script src="../scripts/page-common.js"></script>
         <script src='browsers.js'></script>
