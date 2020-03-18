@@ -69,8 +69,8 @@ app.post('/sessionLogin', (req, res) => {
     const idToken = JSON.parse(req.body).idToken.toString();
     
     auth.verifyIdToken(idToken).then((decodedIdToken) => {
-        // Only process if the user just signed in in the last 5 minutes.
-        if (new Date().getTime() / 1000 - decodedIdToken.auth_time < 5 * 60) {
+        // Only process if the user just signed in in the last 30 minutes.
+        if (new Date().getTime() / 1000 - decodedIdToken.auth_time < 30 * 60) {
             // Create session cookie and set it.
             console.log('idToken', idToken, 'expiresIn', timeToExpire)
 
@@ -81,7 +81,7 @@ app.post('/sessionLogin', (req, res) => {
         if(sessionCookie){
             console.log('sessionCookie: ', sessionCookie);
             // Set cookie policy for session cookie.
-            const options = {maxAge: timeToExpire,  secure: true}; //httpOnly: true,
+            const options = {maxAge: timeToExpire,  'httpOnly': false, 'SameSite':'None'}; //httpOnly: true, secure: true
             res.cookie('__session', sessionCookie, options);
             res.status(200).send('cookie success!');
             res.end();
@@ -100,6 +100,102 @@ app.post('/sessionLogin', (req, res) => {
     
 });
 
+app.get('/users/all', (req, res) => {
+    auth.listUsers(50)
+    .then((listUsersResult) => {
+        console.log('user list:',listUsersResult.users);
+        res.status(200).send(JSON.stringify(listUsersResult.users));
+        return
+    })
+    .catch((error) => {
+        console.log('Error listing users:', error);
+        res.status(500).send();
+    });
+    
+});
+
+// get userRecord through uid
+app.get('/user/:uid', (req, res) => {
+
+    auth.getUser(req.params.uid)
+    .then((userRecord) => {
+        res.status(200).send(JSON.stringify(userRecord));
+        return;
+
+    })
+    .catch((error) => {
+        console.log('Error fetching user data:', error);
+        res.status(404).send();
+    });
+    
+});
+
+// update a user
+app.put('/user/:uid', (req, res) =>{
+    // check if the request body is a proper JSON
+    let testDict = tryParseJSON(req.body);
+    if(testDict === false){
+        res.status(400).send('malformed request body');
+        return
+    }
+
+    let dataDict = testDict;
+
+    auth.updateUser(req.params.uid, {
+        email: dataDict.email,
+        displayName: dataDict.displayName,
+    })
+    .then((userRecord) => {
+        res.status(200).send(userRecord.toJSON());
+        return
+    })
+    .catch((error) => {
+        console.log(error);
+        console.log('Error updating a user');
+        
+        res.status(403).send(JSON.stringify({}));
+        
+    });
+});
+
+app.put('/userUpdate', (req, res) =>{
+    const sessionCookie = req.cookies.__session || '';
+
+    // check if the request body is a proper JSON
+    let testDict = tryParseJSON(req.body);
+    if(testDict === false){
+        res.status(400).send('malformed request body');
+        return
+    }
+
+    let dataDict = testDict;
+
+    // Verify the session cookie.
+    auth.verifySessionCookie(sessionCookie, true)
+    .then((decodedIdToken) => {
+        console.log('decoding success ');
+
+        let uid = decodedIdToken.uid;
+        return admin.auth().updateUser(uid, {
+            email: dataDict.email,
+            displayName: dataDict.username,
+        });
+        
+    })
+    .then((userRecord) => {
+        console.log('Successfully updated user', userRecord.toJSON());
+        res.status(200).send(userRecord.toJSON());
+        return
+    })
+    .catch((error) => {
+        console.log(error);
+        console.log('Need to login first');
+        
+        res.status(403).send(JSON.stringify({}));
+        
+    });
+});
+
 // Verify session cookie and check permissions for a user
 app.get('/user-access', (req, res) => {
     const sessionCookie = req.cookies.__session || '';
@@ -107,7 +203,6 @@ app.get('/user-access', (req, res) => {
     auth.verifySessionCookie(
       sessionCookie, true /** checkRevoked */)
       .then((decodedIdToken) => {
-        // TODO: send content for user-info
         res.status(200).send(JSON.stringify(decodedIdToken));
         return
       })
@@ -115,10 +210,8 @@ app.get('/user-access', (req, res) => {
         console.log(error);
         console.log('Need to login first');
         // Session cookie is unavailable or invalid. Force user to login.
-        res.redirect('/login');
-        res.end();
-        
-      });
+        res.status(403).send();        
+    });
 });
 
 // Verify session cookie and check permissions for an administrator
@@ -129,17 +222,15 @@ app.get('/admin-access', (req, res) => {
     .then((decodedIdToken) => {
         // Check custom claims to confirm user is an admin.
         if (decodedIdToken.admin === true) {
-            // TODO: send content for admin
             res.status(200).send(JSON.stringify(decodedIdToken));
         }
-        res.status(403).send('forbidden request');
+        res.status(403).send();
         return
     })
     .catch((error) => {
         // Session cookie is unavailable or invalid. Force user to login.
-        res.redirect('/login');
-        res.end();
         console.log('need to login first');
+        res.status(403).send();
     });
 });
 
@@ -159,6 +250,8 @@ app.get('/sessionize', (req, res) => {
         
         res.type('text/plain');
         res.cookie('__session', sessionID, {
+            domain: 'js-cse135-pa4.web.app', 
+            path: '/',
             'httpOnly': false,
             'SameSite': 'None',
         });
@@ -338,3 +431,30 @@ app.get("/showdb", (_, res) => {
 });
 
 exports.app = functions.https.onRequest(app);
+
+// On sign up.
+exports.processSignUp = functions.auth.user().onCreate((user) => {
+    // Check if user meets role criteria.
+    if (user.email && user.email.endsWith('@admin.ucsd.edu')) {
+        const customClaims = { admin: true };
+
+        return auth.setCustomUserClaims(user.uid, customClaims)
+        .then(() => {
+            console.log('an admin user built');
+            return
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+    else{
+        return auth.setCustomUserClaims(user.uid, { admin: false })
+        .then(() => {
+            console.log('an analyst user built');
+            return
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+  });

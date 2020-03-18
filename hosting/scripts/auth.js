@@ -17,7 +17,6 @@ function getCookie(name) {
 
 const endpoint = "https://js-cse135-pa4.web.app/";
 
-
 function createAccount(e){
     e.preventDefault();
     console.log("create account!");
@@ -41,6 +40,49 @@ function createAccount(e){
 
 function createSuccess(){
     document.getElementById('createAccountSuccess').hidden = false;
+}
+
+function updateAccount(userInfoConfig){
+        
+    console.log('send update request: ', userInfoConfig);
+    let url = endpoint + "userUpdate";
+    fetch(url, {
+        method: 'PUT',
+        mode: 'cors',
+        credentials: 'include',
+        body: JSON.stringify(userInfoConfig)
+    })
+    .then((response) => {
+        console.log('response return');
+        return response.json();
+    })
+    .then((result) => {
+        if(result){
+            console.log("update success")
+            updateSuccess();
+        }
+        else{
+            console.log('update User Failure');
+            updateFailure();
+        }
+        console.log(result);
+    })
+    .catch((error) => {
+        console.error('update User Error:', error);
+    });
+    
+}
+function updateSuccess(){    
+    console.log('Create User Success!');
+    let msg = document.querySelector(".submit-button a")
+    msg.innerHTML = "update success!";
+    msg.className = "success";
+}
+function updateFailure(){    
+    console.log('Create User Failure!');
+    let msg = document.querySelector(".submit-button a")
+    msg.innerHTML = "update failure!";
+    msg.className = "failure";
 }
 
 // As httpOnly cookies are to be used, do not persist any state client side.
@@ -84,7 +126,7 @@ function signIn(e){
                     loginSuccess();
                 }
                 else{
-                    console.log('Create User Failure');
+                    loginFail("create fail!");
                 }
                 console.log(result);
             })
@@ -97,15 +139,15 @@ function signIn(e){
     }).then(() => {
         // A page redirect would suffice as the persistence is set to NONE.
         return firebase.auth().signOut();
-    }).then(() => {
-        console.log('go to dashboard');
-        window.location.assign('/dashboard');
     });
 }
   
 
 function loginSuccess(){    
     console.log('Create User Success!');
+
+    console.log('go to dashboard');
+    window.location.assign('/dashboard');
 }
 
 function loginFail(message){

@@ -3,29 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <meta name="author" content="Jiayue Sun">
-        <title>Managing Users</title>
-        <link rel="icon" href="moon_icon.png" sizes="32x32 64x64">
+        <title>Admin Page</title>
+        <link rel="icon" href="../moon_icon.png" sizes="32x32 64x64">
         <link rel="stylesheet" type="text/css" href="style/main.css">
-        <script src="./scripts/access-init.js"></script>
+        <link rel="stylesheet" type="text/css" href="style/grid.css">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
+        <!--<script src="../scripts/access-init.js"></script>-->      
     </head>
     <body>
-        <main class="table">
-            <h1>Manage Users</h1>
+        <main class="main-side">
             <div>
-                <h3>Speed Statistics</h3>
-                <a href="reports/speed">
-                    <iframe src="reports/speed" width="800" height="600"></iframe>
-                </a>
+                <h1>User Management</h1>
+                <zing-grid 
+                    caption="User Data"
+                    sort
+                    search
+                    editor
+                    layout="row"
+                    viewport-stop>
+                </zing-grid>
             </div>
-            <div>
-                <h3>Browser Statistics</h3>
-                <a href="reports/browsers">
-                    <iframe src="reports/browsers" width="800" height="600"></iframe>
-                </a>
-            </div>      
+            <div class="right-button-container">
+                <button id="user-submit">Submit Changes</button>
+            </div>
         </main>
-        <footer>
-        </footer>
+        <script src='scripts/admin.js'></script>
         <noscript>Java Script is not on</noscript>
     </body>
 </html>

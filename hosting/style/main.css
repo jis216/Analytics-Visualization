@@ -14,13 +14,13 @@ h2 {
     color: orangered;
     font-size: 28px;
     font-weight: bold;
-    text-decoration: underline;
     margin-top: 10px;
     margin-bottom: 2px;
 }
 h3{
+    text-align: center;
     color: lightyellow;
-    font-size: 20px;
+    font-size: 28px;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 2px;
@@ -31,21 +31,16 @@ hr{
 }
 
 
-details{
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid orangered;
-    border-radius: 15px;
-}
-summary{
-    color: orangered;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
 picture{
     margin: 20px 10px;
+}
+
+button{
+    text-align: center;
+    margin: 0;
+    margin-top: 10px;
+    padding:0;
+
 }
 
 /* Text  */
@@ -231,12 +226,14 @@ main.main-side ul,ol{
     box-shadow:  0 0 10px 5px rgba(0,0,0,0.6);
 }
 
-.flexbox .side-column{
+.flexbox .left-side-column{
   flex-basis:  100px;
   flex-grow: 1;
   text-align: center;
+  vertical-align: middle;
+
+  padding: 30px 10px;
   
-  padding: 10px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
 
@@ -245,14 +242,25 @@ main.main-side ul,ol{
 
 .flexbox .main-column{
     flex-basis: 200px;
-    flex-grow: 3;
+    flex-grow: 2;
+    flex-shrink: 1;
   
-    padding: 10px 20px;
+    padding: 10px 10px;
+
+    background-color: lightyellow;
+    text-align: center;
+}
+
+.flexbox .right-side-column{
+    flex-basis: 100px;
+    flex-grow: 1.5;
+
+    padding: 10px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 
-    background-color: lightyellow;
-    text-align: left;
+    background-color: lightsalmon;
+    text-align: center;
 }
 
 .avatar {
@@ -260,4 +268,165 @@ main.main-side ul,ol{
     width: 250px;
     height: 250px;
     border-radius: 50%;
+}
+
+div.user-form{
+    padding: 0px 12%;
+}
+
+.grid-3-3{
+    display: grid;
+    grid-template-columns: 25% 45% 25%;
+    grid-template-rows: 50px 50px 50px; 
+    grid-column-gap: 2%;
+    grid-row-gap: 10px;
+
+    grid-template-areas: 
+    "label1 field1 button1"
+    "label2 field2 button2"
+    "label3 field3 button3";
+
+    grid-auto-flow: row;
+}
+
+.grid-3-3 .label{
+    font-size: 20px;
+    justify-self: end;
+    align-self: end;
+}
+
+.grid-3-3 .editable{
+    justify-self: stretch;
+    align-self: end;
+
+    padding-bottom: 2px;
+    padding-left: 2px;
+
+    border: none;
+    border-bottom:  2px lightsalmon solid;
+
+    font-family: 'Latin-Modern-Roman', serif;
+    font-size: 20px;
+}
+
+.grid-3-3 button{
+    justify-self: stretch;
+
+    padding: 0px 5px;
+    border:  2px gray solid;
+    border-radius: 5px;
+
+    font-family: 'Latin-Modern-Roman', serif;
+    font-size: 20px;
+}
+
+div.submit-button, div.manage-user{
+    height: 50px;
+    margin-top: 20px;
+}
+
+button#user-update{
+    margin-left: 56%;
+    padding: 0px 5px;
+    vertical-align: center;
+    
+    background-color: lightsalmon;
+    border:  2px gray solid;
+    border-radius: 3px;
+    
+    width: 120px;
+    height: 40px;
+
+    font-family: 'Latin-Modern-Roman', serif;
+    font-size: large;
+}
+
+.submit-button a{
+    float:left;
+}
+
+.submit-button a.success{
+    color: green;
+}
+
+.submit-button a.fail{
+    color: red;
+}
+
+button#enter-admin{
+    vertical-align: middle;
+    
+    background-color: lightyellow;
+    border:  2px gray solid;
+    border-radius: 3px;
+    
+    width: 150px;
+    height: 40px;
+
+    font-family: 'Latin-Modern-Roman', serif;
+    font-size: large;
+}
+
+.right-button-container{
+    text-align: right;
+}
+
+button#user-submit{
+    text-align: middle;
+    
+    background-color: lightsalmon;
+    border:  2px gray solid;
+    border-radius: 3px;
+    
+    width: 180px;
+    height: 40px;
+
+    font-family: 'Latin-Modern-Roman', serif;
+    font-size: large;
+}
+form{
+    margin: 50px;
+    color: lightgoldenrodyellow;
+}
+
+form div{
+    margin: 5px 5%;
+}
+
+form label,p,legend{
+    margin: 5px;
+    font-family: 'Latin-Modern-Roman', serif;
+    font-size: 24px;
+}
+
+form input{
+    margin: 5px;
+    padding: 0px 5px;
+    border: none;
+    border-bottom: 2px gray solid;
+    width: 200px;
+    height: 30px;
+    font-family: 'R', serif;
+    font-size: large;
+}
+
+select{
+    height: 50px;
+    font-size: 36px;
+    text-align: center;
+}
+option{
+    height: 50px;
+    font-size: 36px;
+    text-align: center;
+}
+
+form input[type="submit"], form button{
+    margin-left: 750px;
+    padding: 0px 5px;
+    border:  2px gray solid;
+    width: 150px;
+    height: 30px;
+    font-family: 'Latin-Modern-Roman', serif;
+    font-size: large;
 }

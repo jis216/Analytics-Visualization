@@ -15,7 +15,7 @@
     "rewrites": [
       {
         "source": "/",
-        "destination": "/index.html"
+        "destination": "/login.html"
       },
       {
         "source": "/*tracker*",
@@ -39,6 +39,18 @@
       },
       {
         "source": "/sessionLogin",
+        "function": "app"
+      },
+      {
+        "source": "/userUpdate",
+        "function": "app"
+      },
+      {
+        "source": "/users/*",
+        "function": "app"
+      },
+      {
+        "source": "/user/*",
         "function": "app"
       }
     ],

@@ -6,27 +6,48 @@
         <title>Table Page</title>
         <link rel="icon" href="../moon_icon.png" sizes="32x32 64x64">
         <link rel="stylesheet" type="text/css" href="../style/main.css">
-        <link rel="stylesheet" type="text/css" href="chart.css">
-        <script src="../scripts/access-init.js"></script>
+        <script src="scripts/access-init.js"></script>
     </head>
     <body>
         <main class="flexbox">
             <div class = "intro">
-                <section class="side-column">
-                    <h2> Avatar </h2>
+                <section class="left-side-column">
                     <img src="imgs/avatar.jpg" alt="Avatar" class="avatar">
                 </section>
                 <section class="main-column">
-                    <h2> Intro </h2>
-                    <br>
-                    <p>
-                        Hi I am <em>Jiayue Sun</em> and I usually go by <em>Coraline</em>. Welcome to this freshly built personal website.
-                        Since my Chinese name has the character "月"(Moon) in it, 
-                        please be prepared for the possible large amount of moon related content.
-                    </p>
+                    <h2> Your Profile </h2>
+                    <div class="user-form">
+                        <div class="grid-3-3">
+                            <span title="username" class="label">Username:</span>
+                            <span title="username" class="editable"></span>
+                            <button title="username" class="edit">edit</button>
+    
+                            <span title="email" class="label">Email:</span>
+                            <span title="email" class="editable"></span>
+                            <button title="email" class="edit">edit</button>
+    
+                            <span title="user-type" class="label">User Type:</span>
+                            <span title="user-type" ></span>
+                        </div>
+                    </div>
+                    <div class="submit-button">
+                        <a></a>
+                        <button id="user-update">Update</button>
+                    </div>
+                </section>
+                <section class="right-side-column">
+                    <h3> Admin Features </h3>
+                    <div class="manage-user">
+                        <button id="enter-admin">Manage Users</button>
+                    </div>
                 </section>
             </div>
         </main>
+        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-auth.js"></script>
+        <script src="scripts/firebase-init.js"></script>
+        <script src="scripts/auth.js"></script>
+        <script src="scripts/profile.js"></script>
         <noscript>Java Script is not on</noscript>
     </body>
 </html>
