@@ -2,8 +2,12 @@
 ## URL & Accounts
 - web app url: [https://js-cse135-pa4.web.app/](https://js-cse135-pa4.web.app/)
 - grading account:
-	- email: cse135grader@gmail.com
-	- password: 1234567
+	- Admin Level:
+		- email: cse135grader@gmail.com
+		- password: 1234567
+	- Analyst Level:
+		- email: user@gmail.com
+		-password: 1234567
 
 ## Authentication  Implementation
 - Code
