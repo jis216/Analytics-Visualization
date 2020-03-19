@@ -1,25 +1,4 @@
 
-window.addEventListener('load',()=>{
-    document.querySelector(`span[title|=username].editable`).innerHTML = userRecord.name;
-    document.querySelector(`span[title|=email].editable`).innerHTML = userRecord.email;
-
-    let userType;
-    if (userRecord.admin){
-        userType = 'Administrator';
-        document.getElementById("enter-admin").hidden = false;
-        document.getElementById("enter-admin").addEventListener('click', () => {
-            window.location.assign('/admin');
-        });
-    }
-    else{
-        document.getElementById("enter-admin").hidden = true;
-        userType = 'Analyst';
-    }
-    document.querySelector(`span[title|=user-type].editable`).innerHTML = userType;
-
-});
-
-
 ['username', 'email'].forEach((elemID) => {
     let editable = document.querySelector(`span[title|=${elemID}].editable`);
     let edit_button = document.querySelector(`button[title|=${elemID}].edit`);

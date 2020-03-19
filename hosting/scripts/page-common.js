@@ -16,12 +16,14 @@ for (i = 0; i < dropdown.length; i++) {
 var signOutBTN = document.getElementById('sign-out');
 var signOutDialog = document.getElementById('signOutDialog')
 var confirmBtn = document.getElementById('confirmBtn');
+var cancelBtn = document.getElementById('cancelBtn');
+
 
 signOutBTN.addEventListener('click', ()=>{
   signOutDialog.showModal();
 });
 
-signOutDialog.addEventListener('close', function onClose() {
+confirmBtn.addEventListener('click', ()=>{
   let url = endpoint + "sessionLogout";
 
   fetch(url, {
@@ -41,4 +43,4 @@ signOutDialog.addEventListener('close', function onClose() {
     }
     return
   });
-});
+})

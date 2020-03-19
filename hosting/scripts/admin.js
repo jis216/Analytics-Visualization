@@ -1,5 +1,5 @@
 
-let endpoint = "https://js-cse135-pa4.web.app/";
+endpoint = "https://js-cse135-pa4.web.app/";
 
 async function getUsers(){
     let url = endpoint + "users/all";
@@ -31,7 +31,6 @@ function updateAccount(userInfoConfig, uid){
         body: JSON.stringify(userInfoConfig)
     })
     .then((res) => {
-        console.log('response return');
         if(res.status == '200'){
             console.log("update success")
         }
@@ -45,7 +44,30 @@ function updateAccount(userInfoConfig, uid){
     
 }
 
+function deleteAccount(uid){
+        
+    let url = endpoint + "user/" +uid;
+    fetch(url, {
+        method: 'DELETE',
+        mode: 'cors',
+        credentials: 'include',
+    })
+    .then((res) => {
+        if(res.status == '200'){
+            console.log("delete success")
+        }
+        else{
+            console.log('delete User Failure');
+        }
+    })
+    .catch((error) => {
+        console.error('delete User Error:', error);
+    });
+    
+}
+
 var users = [];
+var uids = [];
 getUsers().then(async (userResults) => {
     if (userResults == null){
         console.log('no users')
@@ -53,17 +75,20 @@ getUsers().then(async (userResults) => {
     }
     console.log(userResults);
     for (const u of userResults) {
+        uids.push(u.uid);
+
         let ordered_data = {};
         let column_order = ['uid','email', 'displayName'];
+
         column_order.forEach((key) => {
             ordered_data[key] = u[key];
         });
 
         if(u.customClaims){
-            ordered_data['is-admin'] = u.customClaims['admin'];
+            ordered_data['user-type'] = 'Admin';
         }
         else{
-            ordered_data['is-admin'] = false;
+            ordered_data['user-type'] = 'Analyst';
         }
 
         let meta_order = ['creationTime', 'lastSignInTime'];
@@ -73,31 +98,40 @@ getUsers().then(async (userResults) => {
         
         users.push(ordered_data); 
     }
-    console.log('users:');
-    console.log(users);
+
     let zgRef = document.querySelector('zing-grid');
-
-    return await zgRef.setData(users);
+    zgData = zgRef.querySelector('zg-data');
+    zgData.data = users;
+    zgRef.hideColumn('uid');
+    //zgRef.setData(users);
+    return
     
-}).then((grid) => {
-    let colgroup = document.querySelector('zing-grid zg-colgroup');
-    let remove_col = document.createElement('zg-column');
-    remove_col.type = "remover";
-    colgroup.appendChild(remove_col);
-
-    let uid = colgroup.querySelector('zg-column[index|=uid]')
-    uid.editor="false";
+}).then(() => {
 
     let submitBtn = document.getElementById('user-submit');
     submitBtn.addEventListener('click', ()=>{
         let zgRef = document.querySelector('zing-grid');
         dataArr = zgRef.getData();
-        dataArr.forEach((row) => {
+        for (let i=0; i < dataArr.length; i++){
+            row = dataArr[i]
+            const ind = uids.indexOf(row.uid);
+            if (ind > -1) {
+                uids.splice(ind, 1);
+            }
             requestBody = {
                 email: row.email,
-                displayName: row['display-name']
+                displayName: row['display-name'],
             };
             updateAccount(requestBody, row.uid);
-        });
+            if (i == dataArr.length - 1){
+                for(id of uids){
+                    deleteAccount(id);
+                    const ind = uids.indexOf(id);
+                    if (ind > -1) {
+                        uids.splice(ind, 1);
+                    }
+                }
+            }
+        };
     });
 });

@@ -139,18 +139,31 @@ app.put('/user/:uid', (req, res) =>{
     let dataDict = testDict;
 
     auth.updateUser(req.params.uid, {
-        email: dataDict.email,
-        displayName: dataDict.displayName,
+            email: dataDict.email,
+            displayName: dataDict.displayName,
     })
     .then((userRecord) => {
         res.status(200).send(userRecord.toJSON());
-        return
+        return  
     })
     .catch((error) => {
         console.log(error);
         console.log('Error updating a user');
         
         res.status(403).send(JSON.stringify({}));
+    });
+});
+
+app.delete('/user/:uid', (req, res) => {
+    auth.deleteUser(req.params.uid)
+    .then(() => {
+        console.log('Successfully deleted user');
+        res.status(200).send();
+        return
+    })
+    .catch((error) => {
+        console.log('Error deleting user:', error);
+        res.status(404).send();
     });
 });
 

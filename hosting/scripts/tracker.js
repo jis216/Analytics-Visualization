@@ -12,7 +12,7 @@ function localSetItem(doc, name, value){
     if (name != "idle-time"){
         report_table.querySelector(`#${name} td.val`).innerHTML = value;
     }
-}
+};
 
 function localPlaceItem(doc, name){
     if(localSession[doc]){
@@ -27,19 +27,19 @@ function localPlaceItem(doc, name){
     else{
         return false
     }
-}
+};
 
 function localSetBatch(doc, pairs){
     for(var name in pairs) {
         localSetItem(doc, name, pairs[name]);
     }
-}
+};
 
 function localPlaceBatch(doc, array){
     array.forEach((item, _) =>{
         localPlaceItem(doc, item);
     });
-}
+};
 
 async function initSession(){
     let url = endpoint + "sessionize";
@@ -50,7 +50,7 @@ async function initSession(){
         redirect: 'follow'
     });
     return await res.text();
-}
+};
 
 function sendDocument(docuNm, dataDict){
     let inputData = dataDict;
@@ -59,7 +59,7 @@ function sendDocument(docuNm, dataDict){
 
     let url = endpoint + "collect/document";
     navigator.sendBeacon(url, JSON.stringify(inputData));
-}
+};
 
 function getDocument(docName){
     let url = endpoint + "collect/document";
@@ -80,7 +80,7 @@ function getDocument(docName){
     }).then((resultJson) => {
         localSession[docName] = resultJson;
     });
-}
+};
 
 async function getCollection(){
     let url = endpoint + "collect/collection";
@@ -94,7 +94,7 @@ async function getCollection(){
             'Accept': 'application/json'
     }});
     return await res.json();
-}
+};
 
 function newRow(ID, content){
     let template = report_table.querySelector('#reportrow');
@@ -107,7 +107,7 @@ function newRow(ID, content){
     td[0].textContent = content;
 
     tbody.appendChild(clone);
-}
+};
 
 report_table = document.createElement("div");
 report_table.innerHTML =
@@ -208,14 +208,14 @@ function setStatic(){
     }
     localSetBatch("static", static_Dict);
     sendDocument("static", localSession['static']);
-}
+};
 
 function placeUnload(){
     const unload_places = [
         'unloading-start','unloading-end','unloading-diff'
     ]
     localPlaceBatch("events", unload_places);  
-}
+};
 
 
 function handler(evt) {
@@ -242,11 +242,11 @@ function handler(evt) {
     }
     idleTime = 0;
     
-}
+};
 
 function idleButtonHandler(){
     localPlaceItem("events", "idle-time");
-}
+};
 
 function setLoadingData(){
     let t = performance.timing;
@@ -260,7 +260,7 @@ function setLoadingData(){
 
     localSetBatch("loading", loadingPairs);
     sendDocument("loading", localSession['loading']);
-}
+};
 
 document.onreadystatechange = (e) =>
 {
@@ -278,6 +278,7 @@ document.onreadystatechange = (e) =>
             }
             setStatic();
             setLoadingData();
+            return
         });
     }
 };

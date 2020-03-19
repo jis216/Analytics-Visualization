@@ -30,15 +30,16 @@
             <dialog id="signOutDialog">
                 <form class="dialog" method="dialog">
                   <p>Are you sure that you want to sign out?</p>
-                  <div>
-                    <button id="confirmBtn" value="">Confirm</button>
-                  </div>
+                  <span>
+                    <button id="confirmBtn" value="Confirm">Confirm</button>
+                    <button id="cancelBtn" value="Cancel">Cancel</button>
+                  </span>
                 </form>
             </dialog>
         </header>
         <main class="main-side">
             <h1>Browsers Analytics</h1>
-            <div id="browser-chart-container">
+            <div id="browser-pie-chart" class="browser-chart-container">
                 <figure class="highcharts-figure">
                     <div id="browser-prop"></div>
                     <p class="highcharts-description">
@@ -46,7 +47,7 @@
                     </p>
                 </figure>
             </div>
-            <div>
+            <div class="browser-grid-container">
                 <zing-grid 
                 caption="Browser Statics"
                 sort

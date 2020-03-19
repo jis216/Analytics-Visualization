@@ -36,7 +36,8 @@ fetch(url, {
     }
     else{
         console.log('go to login')
-        //window.location.assign('/login');
+        window.stop();
+        window.location.assign('/login');
         return null;
     }
     
@@ -52,6 +53,24 @@ fetch(url, {
             }
         }
         
+    }
+    if(pageName == 'profile'){
+        document.querySelector(`span[title|=username].editable`).innerHTML = userRecord.name;
+        document.querySelector(`span[title|=email].editable`).innerHTML = userRecord.email;
+
+        let userType;
+        if (userRecord.admin){
+            userType = 'Administrator';
+            document.getElementById("enter-admin").hidden = false;
+            document.getElementById("enter-admin").addEventListener('click', () => {
+                window.location.assign('/admin');
+            });
+        }
+        else{
+            document.getElementById("enter-admin").hidden = true;
+            userType = 'Analyst';
+        }
+        document.querySelector(`span[title|=user-type].editable`).innerHTML = userType;
     }
     return
 

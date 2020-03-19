@@ -7,9 +7,9 @@
         <link rel="icon" href="../moon_icon.png" sizes="32x32 64x64">
         <link rel="stylesheet" type="text/css" href="style/main.css">
         <link rel="stylesheet" type="text/css" href="style/grid.css">
+        <script src="../scripts/access-init.js"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://cdn.zinggrid.com/zinggrid.min.js"></script>
-        <!--<script src="../scripts/access-init.js"></script>-->      
     </head>
     <body>
         <header>
@@ -29,22 +29,32 @@
               <dialog id="signOutDialog">
                 <form class="dialog" method="dialog">
                   <p>Are you sure that you want to sign out?</p>
-                  <div>
-                    <button id="confirmBtn" value="">Confirm</button>
-                  </div>
+                  <span>
+                    <button id="confirmBtn" value="Confirm">Confirm</button>
+                    <button id="cancelBtn" value="Cancel">Cancel</button>
+                  </span>
                 </form>
               </dialog>
         </header>
         <main class="main-side">
             <div>
                 <h1>User Management</h1>
-                <zing-grid 
+                <p>Only email and name are editable. Please double-click the cell you want to edit</p>
+                <zing-grid
                     caption="User Data"
                     sort
                     search
-                    editor
-                    layout="row"
-                    viewport-stop>
+                    editor>
+                    <zg-data data=''></zg-data>
+                    <zg-colgroup>
+                        <zg-column index="uid" header= "UID"></zg-column>
+                        <zg-column index="email" header="Email"></zg-column>
+                        <zg-column index="displayName" header="Display Name"></zg-column>
+                        <zg-column index="user-type" header="User Type" editable="false"></zg-column>
+                        <zg-column index='creationTime' header="Creation Time" editor="false"></zg-column>
+                        <zg-column index='lastSignInTime' header="Last Sign-in" editor="false"></zg-column>
+                        <zg-column type="remover" onclick="deleteHandler"></zg-column>
+                    </zg-colgroup>
                 </zing-grid>
             </div>
             <div class="right-button-container">
