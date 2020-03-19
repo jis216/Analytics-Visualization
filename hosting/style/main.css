@@ -478,13 +478,17 @@ form.dialog p{
 }
 
 form.dialog span{
-    text-align: center;
-    display: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form.dialog button{
-    margin-top: 20px;
+    margin: 20px 20px;
+    width: 120px;
+    display: inline-block;
 }
+
 
 .browser-chart-container{
     margin: 20px 0px;
